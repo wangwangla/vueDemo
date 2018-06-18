@@ -1,0 +1,59 @@
+实例：Demo07
+
+1.安装官方插件
+D:\vuedemo02>npm install vue-resource --save
+save的作用是将引入的包坐标加入到package.json中去
+2.在main.js中加入
+使用配置
+(1)import VueResource from 'vue-resource'
+(2)Vue.use(VueResource);    使用它
+4.在组件中使用他们
+export default { 
+  name: 'demo07',
+  data () {
+    return {
+        msg:'你好，我是啦啦啦!',
+    }
+  },methods:{
+  	getMsg(){
+  		/*请求参数*/
+  		var api='http://www.phonegap100.com/appapi.php?a=getPrtalList&catid=20&page=1'
+  		this.$http.get(api).then(
+  			function(response){   这里不建议写function  可以修改为(response)=>
+  				console.log(response)
+  		},function(err){
+  			console.log(err);
+  			
+  		})
+  	}
+  }
+}
+
+
+
+方法二:使用axios进行数据的获取
+1.安装
+npm install axios --save
+2.哪里使用就在哪里引用
+
+import Axios from 'axios';
+export default { 
+  name: 'demo08',
+  data () {
+    return {
+    }
+  },methods:{
+  	getMsg()
+  	{
+  		var api = 'http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20&page=1';
+ 
+  		Axios.get(api).then((response)=>{
+  			console.log(response);
+  		}).catch(error=>{
+  			console.log(error);
+  		})
+  	}
+  },mounted(){
+
+  }
+}
